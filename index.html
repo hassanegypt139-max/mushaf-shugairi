@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0F4C3A">
+    <meta name="description" content="تطبيق إسلامي شامل - القرآن الكريم والأذكار">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="مصحف الشقيري">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>مصحف الشقيري</title>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🌙</span>
+                <h1>مصحف الشقيري</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="home">الرئيسية</button>
+                <button class="nav-btn" data-section="quran">القرآن</button>
+                <button class="nav-btn" data-section="adhkar">الأذكار</button>
+                <button class="nav-btn" data-section="favorites">المفضلة</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h2>أهلاً بك في مصحف الشقيري</h2>
+                    <p>تطبيق إسلامي شامل يحتوي على القرآن الكريم والأذكار</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card" onclick="showSection('quran')">
+                        <div class="feature-icon">📖</div>
+                        <h3>القرآن الكريم</h3>
+                        <p>114 سورة كاملة بصوت الشيخ عبد الباسط</p>
+                    </div>
+                    
+                    <div class="feature-card" onclick="showSection('adhkar')">
+                        <div class="feature-icon">📿</div>
+                        <h3>الأذكار</h3>
+                        <p>أذكار الصباح والمساء والنوم</p>
+                    </div>
+                    
+                    <div class="feature-card" onclick="showSection('favorites')">
+                        <div class="feature-icon">⭐</div>
+                        <h3>المفضلة</h3>
+                        <p>آياتك وأذكارك المفضلة</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quran Section -->
+            <section id="quran" class="section">
+                <div class="section-header">
+                    <h2>القرآن الكريم</h2>
+                    <div class="search-box">
+                        <input type="text" id="quranSearch" placeholder="ابحث في السور...">
+                    </div>
+                </div>
+                
+                <div class="surah-grid" id="surahGrid">
+                    <!-- Surahs will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Surah Detail (Hidden by default) -->
+            <section id="surah-detail" class="section">
+                <button class="back-btn" onclick="showSection('quran')">← العودة</button>
+                <div class="surah-header">
+                    <h2 id="surahTitle"></h2>
+                    <p id="surahInfo"></p>
+                </div>
+                <div class="ayah-list" id="ayahList">
+                    <!-- Ayahs will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Adhkar Section -->
+            <section id="adhkar" class="section">
+                <div class="section-header">
+                    <h2>الأذكار</h2>
+                </div>
+                
+                <div class="adhkar-categories">
+                    <div class="category-card" onclick="loadAdhkar('morning')">
+                        <div class="category-icon">🌅</div>
+                        <h3>أذكار الصباح</h3>
+                    </div>
+                    <div class="category-card" onclick="loadAdhkar('evening')">
+                        <div class="category-icon">🌇</div>
+                        <h3>أذكار المساء</h3>
+                    </div>
+                    <div class="category-card" onclick="loadAdhkar('sleep')">
+                        <div class="category-icon">🌙</div>
+                        <h3>أذكار النوم</h3>
+                    </div>
+                    <div class="category-card" onclick="loadAdhkar('general')">
+                        <div class="category-icon">📿</div>
+                        <h3>أذكار عامة</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Adhkar Detail -->
+            <section id="adhkar-detail" class="section">
+                <button class="back-btn" onclick="showSection('adhkar')">← العودة</button>
+                <h2 id="adhkarTitle"></h2>
+                <div class="adhkar-list" id="adhkarList">
+                    <!-- Adhkar will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Favorites Section -->
+            <section id="favorites" class="section">
+                <div class="section-header">
+                    <h2>المفضلة</h2>
+                </div>
+                <div id="favoritesList">
+                    <!-- Favorites will be loaded here -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Audio Player (Fixed Bottom) -->
+    <div class="audio-player" id="audioPlayer" style="display: none;">
+        <div class="player-info">
+            <div class="player-title" id="playerTitle">اسم السورة</div>
+            <div class="player-subtitle" id="playerSubtitle">الشيخ عبد الباسط</div>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+            <button class="player-btn" onclick="closePlayer()">✕</button>
+        </div>
+    </div>
+
+    <!-- Install Button (PWA) -->
+    <button id="installBtn" class="install-btn" style="display: none;">
+        📱 تثبيت التطبيق
+    </button>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('✅ Service Worker registered'))
+                    .catch(err => console.log('❌ Service Worker failed:', err));
+            });
+        }
+
+        // Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'block';
+                installBtn.addEventListener('click', () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('✅ User accepted install');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <!-- Main Script -->
+    <script src="/script.js"></script>
+</body>
+</html>
