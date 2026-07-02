@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f5132">
+    <title>مصحف الشقيري</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #0f5132;
+            --secondary: #d4af37;
+            --bg: #f5f0e1;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --shadow: rgba(15, 81, 50, 0.15);
+        }
+
+        body {
+            font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade', serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f5132 0%, #1a7a4d 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .search-box {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            padding: 8px;
+        }
+
+        .surah-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .surah-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px var(--shadow);
+            border: 2px solid transparent;
+        }
+
+        .surah-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--secondary);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .surah-number {
+            background: linear-gradient(135deg, #0f5132 0%, #1a7a4d 100%);
+            color: var(--secondary);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px var(--shadow);
+            border: 2px solid var(--secondary);
+        }
+
+        .surah-info {
+            flex: 1;
+        }
+
+        .surah-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .surah-meta {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            gap: 12px;
+        }
+
+        .surah-page {
+            display: none;
+            padding: 20px 15px;
+        }
+
+        .surah-page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .surah-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .surah-info-bar {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .bismillah {
+            text-align: center;
+            font-size: 28px;
+            color: var(--primary);
+            margin: 30px 0;
+            font-weight: 700;
+        }
+
+        .ayah {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 15px;
+            font-size: 26px;
+            line-height: 2.2;
+            text-align: justify;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ayah-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #eee;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+        }
+
+        .install-btn {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+            font-family: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .surah-name { font-size: 19px; }
+            .ayah { font-size: 22px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🌙 مصحف الشقيري</h1>
+        <p>القرآن الكريم كاملاً</p>
+    </header>
+
+    <div class="container">
+        <div id="homePage">
+            <div class="search-box">
+                <span>🔍</span>
+                <input type="text" id="searchInput" placeholder="ابحث عن سورة...">
+            </div>
+            <div class="surah-list" id="surahList"></div>
+        </div>
+
+        <div id="surahPage" class="surah-page">
+            <button class="back-btn" onclick="goHome()">→ رجوع</button>
+            <h2 class="surah-title" id="surahTitle"></h2>
+            <p class="surah-info-bar" id="surahInfo"></p>
+            <div id="ayahContainer"></div>
+        </div>
+    </div>
+
+    <div class="audio-player" id="audioPlayer" style="display:none">
+        <div>
+            <div style="font-size:14px;opacity:0.9" id="playerName">اسم السورة</div>
+            <div style="font-size:18px;font-weight:700" id="playerReciter">الشيخ مشاري بن راشد العفاسي</div>
+        </div>
+        <div style="display:flex;gap:10px">
+            <button onclick="togglePlay()" style="background:var(--secondary);color:var(--primary);border:none;width:50px;height:50px;border-radius:50%;font-size:20px;cursor:pointer" id="playBtn">▶</button>
+            <button onclick="closePlayer()" style="background:transparent;color:white;border:2px solid white;width:50px;height:50px;border-radius:50%;cursor:pointer">✕</button>
+        </div>
+    </div>
+
+    <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">
+        📱 تثبيت التطبيق
+    </button>
+
+    <audio id="audio" preload="none"></audio>
+
+    <script>
+        const surahs = [
+            {n:1,name:"الفاتحة",t:"مكية",a:7},{n:2,name:"البقرة",t:"مدنية",a:286},
+            {n:3,name:"آل عمران",t:"مدنية",a:200},{n:4,name:"النساء",t:"مدنية",a:176},
+            {n:5,name:"المائدة",t:"مدنية",a:120},{n:6,name:"الأنعام",t:"مكية",a:165},
+            {n:7,name:"الأعراف",t:"مكية",a:206},{n:8,name:"الأنفال",t:"مدنية",a:75},
+            {n:9,name:"التوبة",t:"مدنية",a:129},{n:10,name:"يونس",t:"مكية",a:109},
+            {n:11,name:"هود",t:"مكية",a:123},{n:12,name:"يوسف",t:"مكية",a:111},
+            {n:13,name:"الرعد",t:"مدنية",a:43},{n:14,name:"إبراهيم",t:"مكية",a:52},
+            {n:15,name:"الحجر",t:"مكية",a:99},{n:16,name:"النحل",t:"مكية",a:128},
+            {n:17,name:"الإسراء",t:"مكية",a:111},{n:18,name:"الكهف",t:"مكية",a:110},
+            {n:19,name:"مريم",t:"مكية",a:98},{n:20,name:"طه",t:"مكية",a:135},
+            {n:21,name:"الأنبياء",t:"مكية",a:112},{n:22,name:"الحج",t:"مدنية",a:78},
+            {n:23,name:"المؤمنون",t:"مكية",a:118},{n:24,name:"النور",t:"مدنية",a:64},
+            {n:25,name:"الفرقان",t:"مكية",a:77},{n:26,name:"الشعراء",t:"مكية",a:227},
+            {n:27,name:"النمل",t:"مكية",a:93},{n:28,name:"القصص",t:"مكية",a:88},
+            {n:29,name:"العنكبوت",t:"مكية",a:69},{n:30,name:"الروم",t:"مكية",a:60},
+            {n:31,name:"لقمان",t:"مكية",a:34},{n:32,name:"السجدة",t:"مكية",a:30},
+            {n:33,name:"الأحزاب",t:"مدنية",a:73},{n:34,name:"سبأ",t:"مكية",a:54},
+            {n:35,name:"فاطر",t:"مكية",a:45},{n:36,name:"يس",t:"مكية",a:83},
+            {n:37,name:"الصافات",t:"مكية",a:182},{n:38,name:"ص",t:"مكية",a:88},
+            {n:39,name:"الزمر",t:"مكية",a:75},{n:40,name:"غافر",t:"مكية",a:85},
+            {n:41,name:"فصلت",t:"مكية",a:54},{n:42,name:"الشورى",t:"مكية",a:53},
+            {n:43,name:"الزخرف",t:"مكية",a:89},{n:44,name:"الدخان",t:"مكية",a:59},
+            {n:45,name:"الجاثية",t:"مكية",a:37},{n:46,name:"الأحقاف",t:"مكية",a:35},
+            {n:47,name:"محمد",t:"مدنية",a:38},{n:48,name:"الفتح",t:"مدنية",a:29},
+            {n:49,name:"الحجرات",t:"مدنية",a:18},{n:50,name:"ق",t:"مكية",a:45},
+            {n:51,name:"الذاريات",t:"مكية",a:60},{n:52,name:"الطور",t:"مكية",a:49},
+            {n:53,name:"النجم",t:"مكية",a:62},{n:54,name:"القمر",t:"مكية",a:55},
+            {n:55,name:"الرحمن",t:"مدنية",a:78},{n:56,name:"الواقعة",t:"مكية",a:96},
+            {n:57,name:"الحديد",t:"مدنية",a:29},{n:58,name:"المجادلة",t:"مدنية",a:22},
+            {n:59,name:"الحشر",t:"مدنية",a:24},{n:60,name:"الممتحنة",t:"مدنية",a:13},
+            {n:61,name:"الصف",t:"مدنية",a:14},{n:62,name:"الجمعة",t:"مدنية",a:11},
+            {n:63,name:"المنافقون",t:"مدنية",a:11},{n:64,name:"التغابن",t:"مدنية",a:18},
+            {n:65,name:"الطلاق",t:"مدنية",a:12},{n:66,name:"التحريم",t:"مدنية",a:12},
+            {n:67,name:"الملك",t:"مكية",a:30},{n:68,name:"القلم",t:"مكية",a:52},
+            {n:69,name:"الحاقة",t:"مكية",a:52},{n:70,name:"المعارج",t:"مكية",a:44},
+            {n:71,name:"نوح",t:"مكية",a:28},{n:72,name:"الجن",t:"مكية",a:28},
+            {n:73,name:"المزمل",t:"مكية",a:20},{n:74,name:"المدثر",t:"مكية",a:56},
+            {n:75,name:"القيامة",t:"مكية",a:40},{n:76,name:"الإنسان",t:"مدنية",a:31},
+            {n:77,name:"المرسلات",t:"مكية",a:50},{n:78,name:"النبأ",t:"مكية",a:40},
+            {n:79,name:"النازعات",t:"مكية",a:46},{n:80,name:"عبس",t:"مكية",a:42},
+            {n:81,name:"التكوير",t:"مكية",a:29},{n:82,name:"الانفطار",t:"مكية",a:19},
+            {n:83,name:"المطففين",t:"مكية",a:36},{n:84,name:"الانشقاق",t:"مكية",a:25},
+            {n:85,name:"البروج",t:"مكية",a:22},{n:86,name:
