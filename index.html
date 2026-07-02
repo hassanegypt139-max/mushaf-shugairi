@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f5132">
+    <title>مصحف الشقيري</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>🌙 مصحف الشقيري</h1>
+        <p>القرآن الكريم • الأذكار • الأدعية</p>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="switchTab('quran')">📖 المصحف</button>
+        <button class="tab-btn" onclick="switchTab('athkar')">📿 الأذكار</button>
+        <button class="tab-btn" onclick="switchTab('dua')">🤲 الأدعية</button>
+    </nav>
+
+    <div class="container">
+        <div id="quranPage" class="tab-content active">
+            <div id="homePage">
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" id="searchInput" placeholder="ابحث عن سورة...">
+                </div>
+                <div class="surah-list" id="surahList"></div>
+            </div>
+
+            <div id="surahPage" class="surah-page">
+                <button class="back-btn" onclick="goHome()">→ رجوع للقائمة</button>
+                <h2 class="surah-title" id="surahTitle"></h2>
+                <p class="surah-info-bar" id="surahInfo"></p>
+                <div id="ayahContainer"></div>
+            </div>
+        </div>
+
+        <div id="athkarPage" class="tab-content">
+            <h2 class="page-title">📿 الأذكار</h2>
+            
+            <div class="category-tabs">
+                <button class="cat-btn active" onclick="filterAthkar('all')">الكل</button>
+                <button class="cat-btn" onclick="filterAthkar('morning')">🌅 الصباح</button>
+                <button class="cat-btn" onclick="filterAthkar('evening')">🌙 المساء</button>
+                <button class="cat-btn" onclick="filterAthkar('sleep')">💤 النوم</button>
+                <button class="cat-btn" onclick="filterAthkar('prayer')">🕌 الصلاة</button>
+                <button class="cat-btn" onclick="filterAthkar('wakeup')">⏰ الاستيقاظ</button>
+                <button class="cat-btn" onclick="filterAthkar('travel')">✈️ السفر</button>
+            </div>
+
+            <div id="athkarList"></div>
+        </div>
+
+        <div id="duaPage" class="tab-content">
+            <h2 class="page-title">🤲 الأدعية</h2>
+            <div id="duaList"></div>
+        </div>
+    </div>
+
+    <div class="audio-player" id="audioPlayer" style="display:none">
+        <div>
+            <div style="font-size:14px;opacity:0.9" id="playerName">اسم السورة</div>
+            <div style="font-size:18px;font-weight:700" id="playerReciter">الشيخ عبد الباسط عبد الصمد</div>
+        </div>
+        <div style="display:flex;gap:10px">
+            <button onclick="togglePlay()" style="background:var(--secondary);color:var(--primary);border:none;width:50px;height:50px;border-radius:50%;font-size:20px;cursor:pointer" id="playBtn">▶</button>
+            <button onclick="closePlayer()" style="background:transparent;color:white;border:2px solid white;width:50px;height:50px;border-radius:50%;cursor:pointer">✕</button>
+        </div>
+    </div>
+
+    <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">
+        📱 تثبيت التطبيق
+    </button>
+
+    <audio id="audio" preload="none"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
