@@ -1,86 +1,158 @@
-﹤!DOCTYPE html﹥
-﹤html lang="ar" dir="rtl"﹥
-﹤head﹥
-    ﹤meta charset="UTF-8"﹥
-    ﹤meta name="viewport" content="width=device-width, initial-scale=1.0"﹥
-    ﹤meta name="theme-color" content="#0f5132"﹥
-    ﹤title﹥مصحف الشقيري﹤/title﹥
-    ﹤link rel="manifest" href="manifest.json"﹥
-    ﹤link rel="apple-touch-icon" href="icon-192.png"﹥
-    ﹤meta name="apple-mobile-web-app-capable" content="yes"﹥
-    ﹤meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"﹥
-    ﹤link rel="stylesheet" href="style.css"﹥
-﹤/head﹥
-﹤body﹥
-    ﹤header class="header"﹥
-        ﹤h1﹥🌙 مصحف الشقيري﹤/h1﹥
-        ﹤p﹥القرآن الكريم • الأذكار • الأدعية﹤/p﹥
-    ﹤/header﹥
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f5132">
+  <meta name="description" content="مصحف الشقيري - القرآن الكريم والأذكار والأدعية اليومية">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="مصحف الشقيري">
+  
+  <!-- ========== إعدادات الربح Monetization ========== -->
+  <meta name="monetization" content="enabled">
+  <meta name="author" content="Hassan - مصحف الشقيري">
+  
+  <!-- 
+    ============================================
+    تحقق App-ads.txt - مهم لـ Start.io
+    ============================================
+    ضع هذا السطر في ملف app-ads.txt في جذر موقعك:
+    start.io, 162913586, DIRECT, d349aab6a1a1f856
+    
+    Publisher ID: 162913586
+    App ID: 209583305
+    ============================================
+  -->
+  
+  <!-- أيقونات التطبيق -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <!-- ملف التنسيق الأصلي -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- 
+    ============================================
+    مكان كود الإعلانات الحقيقي - Monetag / PropellerAds
+    ============================================
+    1. ادخل إلى monetag.com وسجل دخولك
+    2. انسخ كود الـ SDK الخاص بك
+    3. الصقه هنا بدلاً من هذا التعليق
+    
+    مثال لكود Monetag:
+    <script>(function(d,z,s){s.src='https://'+z+'/tag.min.js';s.async=true;...})(document,'...','script')</script>
+    
+    مثال لكود Start.io Web SDK (بعد الموافقة):
+    <script src="https://cdn.start.io/start.js"></script>
+    <script>StartIO.init({ appId: '209583305' })</script>
+    
+    اترك الـ divs الخاصة بالإعلانات بالأسفل كما هي، سيقوم الكود الحقيقي بملئها تلقائياً
+    ============================================
+  -->
+  
+  <!-- معاينة إعلان تجريبي - احذفه عند وضع الكود الحقيقي -->
+  <style>
+    .ad-demo-box {
+      background: #fffef9;
+      border: 1.5px dashed #c9a86a;
+      border-radius: 12px;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      color: #8a7a5a;
+      font-size: 13px;
+      margin: 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- الهيدر الأصلي -->
+  <header class="header">
+    <h1>مصحف الشقيري</h1>
+    <p>القرآن الكريم • الأذكار • الأدعية</p>
+  </header>
 
-    ﹤nav class="tabs"﹥
-        ﹤button class="tab-btn active" onclick="switchTab('quran')" id="tabQuran"﹥📖 المصحف﹤/button﹥
-        ﹤button class="tab-btn" onclick="switchTab('athkar')" id="tabAthkar"﹥📿 الأذكار﹤/button﹥
-        ﹤button class="tab-btn" onclick="switchTab('dua')" id="tabDua"﹥🤲 الأدعية﹤/button﹥
-    ﹤/nav﹥
+  <!-- ============================================ -->
+  <!-- إعلان بانر علوي - Top Banner Ad -->
+  <!-- هذا المكان محجوز لـ Start.io App ID 209583305 -->
+  <!-- سيتم ملؤه تلقائياً عند تفعيل الكود الحقيقي -->
+  <!-- ============================================ -->
+  <div id="ad-banner-top" class="ad-demo-box">
+    <span style="font-weight:600; color:#0f5132;">مكان إعلان بانر علوي</span>
+    <span>Start.io App ID: 209583305 | Publisher: 162913586</span>
+    <!-- الصق كود البانر هنا من monetag.com -->
+    <!-- <div id="monetag-banner-top"></div> -->
+  </div>
 
-    ﹤div class="container"﹥
-        ﹤div id="quranPage" class="tab-content active"﹥
-            ﹤div id="homePage"﹥
-                ﹤div class="search-box"﹥
-                    ﹤span﹥🔍﹤/span﹥
-                    ﹤input type="text" id="searchInput" placeholder="ابحث عن سورة..."﹥
-                ﹤/div﹥
-                ﹤div class="surah-list" id="surahList"﹥﹤/div﹥
-            ﹤/div﹥
+  <!-- التبويبات الأصلية -->
+  <nav class="tabs">
+    <button id="tabQuran" class="active" onclick="switchTab('quran')">المصحف</button>
+    <button id="tabAthkar" onclick="switchTab('athkar')">الأذكار</button>
+    <button id="tabDua" onclick="switchTab('dua')">الأدعية</button>
+  </nav>
 
-            ﹤div id="surahPage" class="surah-page"﹥
-                ﹤button class="back-btn" onclick="goHome()"﹥→ رجوع للقائمة﹤/button﹥
-                ﹤h2 class="surah-title" id="surahTitle"﹥﹤/h2﹥
-                ﹤p class="surah-info-bar" id="surahInfo"﹥﹤/p﹥
-                ﹤div id="ayahContainer"﹥﹤/div﹥
-            ﹤/div﹥
-        ﹤/div﹥
+  <!-- إعلان بانر ثاني بعد التبويبات -->
+  <div id="ad-banner-middle" class="ad-demo-box" style="min-height:70px;">
+    <span style="font-weight:600; color:#0f5132;">إعلان وسطي - بين التبويبات والمحتوى</span>
+    <span>Monetag / PropellerAds banner</span>
+    <!-- الصق كود البانر الثاني هنا -->
+  </div>
 
-        ﹤div id="athkarPage" class="tab-content"﹥
-            ﹤h2 class="page-title"﹥📿 الأذكار﹤/h2﹥
-            ﹤div class="category-tabs"﹥
-                ﹤button class="cat-btn active" onclick="filterAthkar('all')" data-cat="all"﹥الكل (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('morning')" data-cat="morning"﹥🌅 الصباح (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('evening')" data-cat="evening"﹥🌙 المساء (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('sleep')" data-cat="sleep"﹥💤 النوم (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('prayer')" data-cat="prayer"﹥🕌 الصلاة (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('wakeup')" data-cat="wakeup"﹥⏰ الاستيقاظ (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('travel')" data-cat="travel"﹥✈️ السفر (0)﹤/button﹥
-                ﹤button class="cat-btn" onclick="filterAthkar('general')" data-cat="general"﹥📚 عامة (0)﹤/button﹥
-            ﹤/div﹥
-            ﹤div id="athkarList"﹥﹤/div﹥
-        ﹤/div﹥
+  <!-- المحتوى الرئيسي - يتم ملؤه من script.js -->
+  <div id="content">
+    <!-- سيتم تحميل محتوى المصحف هنا عبر الجافاسكريبت -->
+  </div>
 
-        ﹤div id="duaPage" class="tab-content"﹥
-            ﹤h2 class="page-title"﹥🤲 الأدعية﹤/h2﹥
-            ﹤div id="duaList"﹥﹤/div﹥
-        ﹤/div﹥
-    ﹤/div﹥
+  <!-- الفوتر الجديد بمعلومات التطبيق -->
+  <footer style="text-align:center; padding:24px 16px; margin-top:40px; border-top:1px solid #e8dfc9; color:#7a8a7e; font-size:13px; line-height:1.7;">
+    <p style="font-weight:600; color:#0f5132; margin-bottom:6px;">مصحف الشقيري v1.0</p>
+    <p>صدقة جارية • لا تنسونا من صالح دعائكم</p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.7;">Publisher ID: 162913586 | App ID: 209583305 | start.io</p>
+  </footer>
 
-    ﹤div class="audio-player" id="audioPlayer" style="display:none"﹥
-        ﹤div﹥
-            ﹤div style="font-size:14px;opacity:0.9" id="playerName"﹥اسم السورة﹤/div﹥
-            ﹤div style="font-size:16px;font-weight:700" id="playerReciter"﹥الشيخ عبد الباسط عبد الصمد﹤/div﹥
-        ﹤/div﹥
-        ﹤div style="display:flex;gap:8px"﹥
-            ﹤button onclick="prevSurah()" style="background:var(--secondary);color:var(--primary);border:none;width:45px;height:45px;border-radius:50%;font-size:18px;cursor:pointer"﹥⏮﹤/button﹥
-            ﹤button onclick="togglePlay()" style="background:var(--secondary);color:var(--primary);border:none;width:50px;height:50px;border-radius:50%;font-size:20px;cursor:pointer" id="playBtn"﹥▶﹤/button﹥
-            ﹤button onclick="nextSurah()" style="background:var(--secondary);color:var(--primary);border:none;width:45px;height:45px;border-radius:50%;font-size:18px;cursor:pointer"﹥⏭﹤/button﹥
-            ﹤button onclick="closePlayer()" style="background:transparent;color:white;border:2px solid white;width:45px;height:45px;border-radius:50%;cursor:pointer"﹥✕﹤/button﹥
-        ﹤/div﹥
-    ﹤/div﹥
+  <!-- ============================================ -->
+  <!-- إعلان بيني Interstitial - يظهر بعد 30 ثانية -->
+  <!-- ============================================ -->
+  <div id="ad-interstitial" style="display:none; position:fixed; inset:0; background:rgba(15,81,50,0.88); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:#fffef9; border-radius:20px; padding:28px 20px; max-width:340px; width:100%; text-align:center; border:2px solid #c9a86a; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <div style="width:56px; height:56px; background:#0f5132; color:#c9a86a; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:24px;">۞</div>
+      <h3 style="color:#0f5132; margin:0 0 8px; font-size:18px;">مكان الإعلان البيني</h3>
+      <p style="color:#6b7a6e; font-size:13px; margin:0 0 18px; line-height:1.6;">هذا إعلان تجريبي يظهر بعد 30 ثانية من فتح التطبيق.<br>عند تفعيل Monetag الحقيقي سيتم استبداله بإعلان فعلي.</p>
+      <div style="background:#fdf8ed; border:1.5px dashed #c9a86a; border-radius:12px; min-height:120px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; color:#8a7a5a; font-size:12px;">
+        Start.io Interstitial<br>App ID 209583305
+      </div>
+      <button onclick="document.getElementById('ad-interstitial').style.display='none'" style="background:#0f5132; color:#fff; border:none; padding:10px 28px; border-radius:999px; font-weight:600; cursor:pointer; width:100%;">متابعة القراءة</button>
+      <p style="font-size:10px; color:#9aa8a0; margin-top:12px;">سيغلق تلقائياً بعد 5 ثوانٍ</p>
+    </div>
+  </div>
 
-    ﹤button class="install-btn" id="installBtn" style="display:none" onclick="installApp()"﹥
-        📱 تثبيت التطبيق
-    ﹤/button﹥
+  <script>
+    // ============================================
+    // إعلان بيني - يظهر بعد 30 ثانية
+    // يمكنك تغيير المدة من 30000 إلى 60000 (دقيقة)
+    // احذف هذا السكريبت عند استخدام كود Monetag الحقيقي
+    // ============================================
+    setTimeout(function() {
+      var interstitial = document.getElementById('ad-interstitial');
+      if (interstitial) {
+        interstitial.style.display = 'flex';
+        // إغلاق تلقائي بعد 5 ثواني
+        setTimeout(function(){ 
+          interstitial.style.display = 'none'; 
+        }, 5000);
+      }
+    }, 30000);
 
-    ﹤audio id="audio" preload="auto"﹥﹤/audio﹥
+    // تتبع بسيط للمشاهدات (اختياري - يمكنك حذفه)
+    console.log('مصحف الشقيري - App ID: 209583305 | Publisher: 162913586');
+  </script>
 
-    ﹤script src="script.js"﹥﹤/script﹥
-﹤/body﹥
-﹤/html﹥
+  <!-- ملف الجافاسكريبت الأصلي - يحتوي على وظائف التطبيق -->
+  <script src="script.js"></script>
+</body>
+</html>
